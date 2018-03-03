@@ -14,8 +14,8 @@ public class Problem7 {
 	}
 	
 	private static boolean isNotSorted(ArrayList<String> strings, Comparator<String> comp) {
-		for (int i = 0, j = 1; j < strings.size(); ++i, ++j) {
-			if (comp.compare(strings.get(i), strings.get(j)) > 0) {
+		for (int i = 0; i < strings.size() - 1; ++i) {
+			if (comp.compare(strings.get(i), strings.get(i + 1)) > 0) {
 				return true;
 			}
 		}
