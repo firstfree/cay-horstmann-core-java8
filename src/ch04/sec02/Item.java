@@ -30,4 +30,18 @@ public class Item {
 		return Objects.equals(description, other.description)
 				&& price == other.price;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(description, price);
+	}
+	
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	@Override
+	public String toString() {
+		return "[description=" + description + ",price=" + price + "]";
+	}
 }

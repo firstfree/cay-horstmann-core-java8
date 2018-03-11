@@ -1,5 +1,7 @@
 package ch04.sec02;
 
+import java.util.Objects;
+
 public class DiscountedItem extends Item {
 	private double discount;
 
@@ -18,10 +20,9 @@ public class DiscountedItem extends Item {
 		
 		return discount == other.discount;
 	}
-	
-	public static void main(String[] args) {
-		DiscountedItem discountedItem = new DiscountedItem("aa", 1, 1);
-		Item item = new Item("aa", 1);
-		System.out.println(item.equals(discountedItem));
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), discount);
 	}
 }

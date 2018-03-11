@@ -1,6 +1,6 @@
 package ch04.sec02;
 
-public class Employee {
+public class Employee implements Cloneable {
 	private String name;
 	private double salary;
 	
@@ -27,8 +27,8 @@ public class Employee {
 				+ ",salary=" + salary + "]";
 	}
 	
-	public static void main(String[] args) {
-		Employee emp = new Employee("Mike", 100);
-		System.out.println(emp);
+	@Override
+	public Employee clone() throws CloneNotSupportedException {
+		return (Employee) super.clone();
 	}
 }
