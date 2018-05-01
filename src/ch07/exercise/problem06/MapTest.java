@@ -4,11 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
 public class MapTest {
-	public enum AAA {
-		MONDAY,
-		TUESDAY,
-		WEDNESDAY
-	}
 	public static void main(String[] args) {
 		LinkedHashMap<String, LinkedHashSet<Integer>> contents = new LinkedHashMap<>();
 		initContents(contents);
