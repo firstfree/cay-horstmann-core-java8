@@ -62,9 +62,9 @@ public class CollectingIntoMaps {
 		Map<String, Set<String>> countryLanguageSets = locales.collect(Collectors.toMap(
 				Locale::getDisplayCountry,
 				l -> Collections.singleton(l.getDisplayLanguage()),
-				(existingValue, newValue) -> {
-					Set<String> union = new HashSet<>(existingValue);
-					union.addAll(newValue);
+				(a, b) -> {
+					Set<String> union = new HashSet<>(a);
+					union.addAll(b);
 					return union;
 				}));
 		System.out.println("countryLanguageSets: " + countryLanguageSets);
