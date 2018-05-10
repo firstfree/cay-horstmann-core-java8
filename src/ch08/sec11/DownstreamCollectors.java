@@ -3,8 +3,11 @@ package ch08.sec11;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
+import java.util.IntSummaryStatistics;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -53,5 +56,38 @@ public class DownstreamCollectors {
 		Map<String, Integer> stateToCityPopulation = cities.collect(
 				Collectors.groupingBy(City::getName, Collectors.summingInt(City::getPopulation)));
 		System.out.println("stateToCityPopulation: " + stateToCityPopulation);
+		
+		cities = readCities("cities.txt");
+		Map<String, Optional<String>> stateToLongestCityName = cities.collect(
+				Collectors.groupingBy(City::getState,
+						Collectors.mapping(City::getName,
+								Collectors.maxBy(Comparator.comparing(String::length)))));
+		System.out.println("stateToLongestCityName: " + stateToLongestCityName);
+		
+		locales = Stream.of(Locale.getAvailableLocales());
+		Map<String, Set<String>> countryToLanguages = locales.collect(
+				Collectors.groupingBy(Locale::getCountry,
+						Collectors.mapping(Locale::getDisplayLanguage,
+								Collectors.toSet())));
+		System.out.println("countryToLanguages: " + countryToLanguages);
+		
+		cities = readCities("cities.txt");
+		Map<String, IntSummaryStatistics> stateToCityPopulationSummary = cities.collect(
+				Collectors.groupingBy(City::getState,
+						Collectors.summarizingInt(City::getPopulation)));
+		System.out.println(stateToCityPopulationSummary.get("NY"));
+		
+		cities = readCities("cities.txt");
+		Map<String, String> stateToCityNames = cities.collect(
+				Collectors.groupingBy(City::getState,
+						Collectors.reducing("", City::getName, (s, t) -> s.length() == 0 ? t : s + ", " + t)));
+		System.out.println("stateToCityNames: " + stateToCityNames);
+		
+		cities = readCities("cities.txt");
+		stateToCityNames = cities.collect(
+				Collectors.groupingBy(City::getState,
+						Collectors.mapping(City::getName,
+								Collectors.joining(", "))));
+		System.out.println("stateToCityNames: " + stateToCityNames);
 	}
 }
