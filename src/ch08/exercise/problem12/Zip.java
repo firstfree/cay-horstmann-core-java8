@@ -8,22 +8,28 @@ public class Zip {
 	public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
 		Object[] firstObjects = first.toArray();
 		Object[] secondObjects = second.toArray();
+		Object[] newObjects = new Object[Math.max(firstObjects.length, secondObjects.length) * 2];
 		
-		int maxLength = Math.max(firstObjects.length, secondObjects.length);
-		Object[] newObjects = new Object[maxLength * 2];
-		for (int i = 0; i < maxLength; ++i) {
-			if (i < firstObjects.length)
-				newObjects[i * 2] = firstObjects[i];
-			if (i < secondObjects.length)
-				newObjects[i * 2 + 1] = secondObjects[i];
+		int minLength = Math.min(firstObjects.length, secondObjects.length);
+		for (int i = 0; i < minLength; ++i) {
+			newObjects[i * 2] = firstObjects[i];
+			newObjects[i * 2 + 1] = secondObjects[i];
+		}
+		
+		for (int i = minLength; i < firstObjects.length; ++i) {
+			newObjects[i * 2] = firstObjects[i];
+		}
+		
+		for (int i = minLength; i < secondObjects.length; ++i) {
+			newObjects[i * 2 + 1] = secondObjects[i];
 		}
 		
 		return (Stream<T>) Arrays.stream(newObjects);
 	}
 	
 	public static void main(String[] args) {
-		Stream<String> first = Stream.of("a", "c", "e", "g", "i");
-		Stream<String> second = Stream.of("b", "d", "f", "h");
+		Stream<String> first = Stream.of("a", "c", "e");
+		Stream<String> second = Stream.of("b", "d", "f", "h", "j");
 		Stream<String> third = zip(first, second);
 		third.forEach(System.out::println);
 	}
