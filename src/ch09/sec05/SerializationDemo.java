@@ -22,6 +22,8 @@ public class SerializationDemo {
 			out.writeObject(paul);
 			
 			out.writeObject(new LabeledPoint("origin", new Point2D(0, 0)));
+			
+			out.writeObject(PersonDatabase.INSTANCE.findById(1));
 		}
 		
 		try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(path))) {
@@ -29,6 +31,8 @@ public class SerializationDemo {
 			Employee e2 = (Employee) in.readObject();
 			System.out.println(e1);
 			System.out.println(e2);
+			
+			System.out.println(in.readObject());
 			
 			System.out.println(in.readObject());
 		}
