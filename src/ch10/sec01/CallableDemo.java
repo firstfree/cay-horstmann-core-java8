@@ -70,8 +70,9 @@ public class CallableDemo {
           throw new RuntimeException();
         }
       });
-      Path found = executor.invokeAny(searchTasks);
-      System.out.println(found);
     }
+
+    Path found = executor.invokeAny(searchTasks);
+    System.out.println(found);
   }
 }
