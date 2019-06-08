@@ -1,1 +1,6 @@
 /bin/
+/src/lib
+.settings
+*.txt
+*.iml
+*.bmp
