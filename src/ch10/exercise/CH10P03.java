@@ -1,4 +1,4 @@
-package ch10.exercise.problem03;
+package ch10.exercise;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class WordFinder {
+public class CH10P03 {
 
   public static void main(String[] args)
       throws IOException, ExecutionException, InterruptedException {

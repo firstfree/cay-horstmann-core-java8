@@ -1,11 +1,11 @@
-package ch10.exercise.problem01;
+package ch10.exercise;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class FileFinder {
+public class CH10P01 {
 
   public static void main(String[] args) throws IOException {
     String word = "java";

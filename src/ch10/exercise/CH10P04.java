@@ -1,8 +1,8 @@
-package ch10.exercise.problem04;
+package ch10.exercise;
 
 import java.util.Arrays;
 
-public class Fibonacci {
+public class CH10P04 {
 
   public static void main(String[] args) {
     Matrix[] matrices = new Matrix[40];

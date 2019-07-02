@@ -1,4 +1,4 @@
-package ch10.exercise.problem05;
+package ch10.exercise;
 
 import ch06.sec06.Arrays;
 import java.io.File;
