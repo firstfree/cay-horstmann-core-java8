@@ -23,7 +23,7 @@ public class CH10P05 {
     ExecutorService executor =
         Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    Set<Path> paths = descendants(Paths.get("./java8study"));
+    Set<Path> paths = descendants(Paths.get("."));
     for (Path path : paths) {
       executor.execute(readAndMergeFilesContainingWords(path));
     }
